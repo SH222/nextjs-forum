@@ -7,12 +7,16 @@ export default async function List() {
 
   return (
     <div className="list-bg">
+      <Link href={"/write"}>
+        <button>글 작성</button>
+      </Link>
       {result.map((item, i) => (
         <div className="list-item" key={i}>
           <Link href={`/detail/` + item._id.toString()}>
             <h4>{item.title}</h4>
           </Link>
           <p>{item.content}</p>
+          <Link href={`/edit/` + item._id.toString()}>🖊</Link>
         </div>
       ))}
     </div>
