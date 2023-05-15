@@ -1,24 +1,21 @@
 import { connectDB } from "@/util/database";
 import Link from "next/link";
+import ListItem from "./listItem";
 
 export default async function List() {
   const db = (await connectDB).db("forum");
-  let result = await db.collection("post").find().toArray(); // post collection에 있는 모든 데이터를 array 형식으로 가져옴
+  let result = await db.collection("post").find().toArray();
+  result = result.map((a) => {
+    a._id = a._id.toString();
+    return a;
+  });
 
   return (
     <div className="list-bg">
       <Link href={"/write"}>
         <button>글 작성</button>
       </Link>
-      {result.map((item, i) => (
-        <div className="list-item" key={i}>
-          <Link href={`/detail/` + item._id.toString()}>
-            <h4>{item.title}</h4>
-          </Link>
-          <p>{item.content}</p>
-          <Link href={`/edit/` + item._id.toString()}>🖊</Link>
-        </div>
-      ))}
+      <ListItem result={result} />
     </div>
   );
 }

@@ -10,7 +10,6 @@ export default async function handler(req, res) {
         { _id: new ObjectId(req.body._id) },
         { $set: change } // 수정할 내용
       );
-      console.log(result);
       return res.status(200).redirect(302, "/list");
     } catch (error) {
       console.log("수정 에러");
