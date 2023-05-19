@@ -1,6 +1,9 @@
 import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import LoginBtn from "./LoginBtn";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,7 +12,9 @@ export const metadata = {
   description: "",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  let session = await getServerSession(authOptions); // 로그인된 유저 정보 출력 (이름, 이메일 등)
+  // console.log(session);
   return (
     <html lang="en">
       <body>
@@ -18,6 +23,8 @@ export default function RootLayout({ children }) {
             Appleforum
           </Link>
           <Link href="/list">List</Link>
+          {session == null ? "" : session.user.name}
+          <LoginBtn session={session} />
         </div>
         {children}
       </body>

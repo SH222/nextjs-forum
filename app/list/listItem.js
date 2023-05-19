@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 
-export default async function ListItem({ result }) {
+export default async function ListItem({ result, session }) {
+  console.log("session" + session.user.email);
+  console.log("result" + result.author);
   return (
     <div>
       {result.map((item, i) => (
@@ -12,6 +14,7 @@ export default async function ListItem({ result }) {
           </Link>
           <p>{item.content}</p>
           <Link href={`/edit/` + item._id.toString()}>🖊</Link>
+
           <span
             onClick={(e) => {
               // 서버로 데이터를 전송하는 방법
@@ -47,6 +50,7 @@ export default async function ListItem({ result }) {
                   }, 1000);
                 });
             }}
+            style={{ display: item.author == session.user.email ? "inline-block" : "none" }}
           >
             ❌
           </span>
