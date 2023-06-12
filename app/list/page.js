@@ -8,14 +8,15 @@ export const dynamic = "force-dynamic";
 
 export default async function List() {
   let session = await getServerSession(authOptions);
-  // console.log("session" + session.user.email);
+  console.log(session);
+  // console.log(session == null);
   const db = (await connectDB).db("forum");
   let result = await db.collection("post").find().toArray();
   result = result.map((a) => {
     a._id = a._id.toString();
     return a;
   });
-  console.log(result.author);
+  // console.log("list_result", result);
 
   return (
     <div className="list-bg">

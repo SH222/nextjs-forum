@@ -14,7 +14,10 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions); // 로그인된 유저 정보 출력 (이름, 이메일 등)
-  // console.log(session);
+  console.log("session", session);
+  const handleLinkClick = (event) => {
+    alert("Link Click");
+  };
   return (
     <html lang="en">
       <body>
@@ -22,7 +25,9 @@ export default async function RootLayout({ children }) {
           <Link href="/" className="logo">
             Appleforum
           </Link>
-          <Link href="/list">List</Link>
+          <Link href="/list" onClick={handleLinkClick}>
+            <a onClick={handleLinkClick}>List</a>
+          </Link>
           {session == null ? "" : session.user.name}
           <LoginBtn session={session} />
         </div>
