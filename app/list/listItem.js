@@ -2,10 +2,7 @@
 
 import Link from "next/link";
 
-export default async function ListItem({ result, session }) {
-  // console.log(session);
-  // console.log("result", result);
-  // console.log(result == null);
+export default async function ListItem({ session, result }) {
   return (
     <div>
       {result.map((item, i) => (
@@ -15,6 +12,7 @@ export default async function ListItem({ result, session }) {
           </Link>
           <p>{item.content}</p>
           <div style={{ display: session.user.email == item.author ? "inline-block" : "none" }}>
+            {/* <div> */}
             <Link href={`/edit/` + item._id.toString()}>🖊</Link>
             <span
               onClick={(e) => {

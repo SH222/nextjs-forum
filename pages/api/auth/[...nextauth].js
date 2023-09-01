@@ -11,6 +11,8 @@ export const authOptions = {
       clientId: "27e30d99f8744a432d20",
       clientSecret: "6d0484c27060837f96677aeb42513ed5becfbfc7",
     }),
+
+    // JWT 로그인 방식 (session 사용 불가)
     CredentialsProvider({
       //1. 로그인페이지 폼 자동생성 해주는 코드
       name: "credentials",

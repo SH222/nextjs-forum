@@ -2,6 +2,7 @@ import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import LoginBtn from "./LoginBtn";
+import ListLink from "./ListLink";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
@@ -14,10 +15,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions); // 로그인된 유저 정보 출력 (이름, 이메일 등)
-  console.log("session", session);
-  const handleLinkClick = (event) => {
-    alert("Link Click");
-  };
   return (
     <html lang="en">
       <body>
@@ -25,10 +22,7 @@ export default async function RootLayout({ children }) {
           <Link href="/" className="logo">
             Appleforum
           </Link>
-          <Link href="/list" onClick={handleLinkClick}>
-            <a onClick={handleLinkClick}>List</a>
-          </Link>
-          {session == null ? "" : session.user.name}
+          <ListLink session={session} />
           <LoginBtn session={session} />
         </div>
         {children}

@@ -17,7 +17,7 @@ export default function LoginBtn(props) {
           </button>
           <button
             onClick={() => {
-              redirect("/register");
+              location.href = "/register";
             }}
           >
             join

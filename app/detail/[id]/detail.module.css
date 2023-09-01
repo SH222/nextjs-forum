@@ -1,0 +1,21 @@
+.likeBtnDiv {
+  width: 60px;
+  height: 50px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.likeBtn {
+  /* width: 40px;
+  height: 40px; */
+  background-color: transparent;
+  border-radius: 30px;
+  transition-duration: 1;
+  font-size: 14px;
+}
+
+.likeBtn:active {
+  /* margin-left: 2px;
+  margin-top: 2px; */
+  /* box-shadow: none; */
+  font-size: 20px;
+}
